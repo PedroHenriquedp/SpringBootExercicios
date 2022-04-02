@@ -1,6 +1,9 @@
 package org.generation.HikariGames.Controller;
 
+import java.math.BigDecimal;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.generation.HikariGames.model.Jogo;
 import org.generation.HikariGames.repository.JogoRepository;
@@ -53,9 +56,18 @@ public class JogoController {
 	public ResponseEntity<List<Jogo>> GetByCrossplayer(@PathVariable Boolean crossplayer){
 		return ResponseEntity.ok(jogoRepository.findByCrossplayer(crossplayer));
 	}
+	@GetMapping("/preco_inicial/{inicio}/preco_final/{fim}")
+    public ResponseEntity<List<Jogo>> getByPrecoBetween(@PathVariable BigDecimal inicio, @PathVariable BigDecimal fim){
+        return ResponseEntity.ok(jogoRepository.findByPrecoBetween(inicio, fim));
+	}    
+    @GetMapping("/precoMaior/{x}")
+    public ResponseEntity<List<Jogo>> getByPrecoMaior(@PathVariable BigDecimal x){
+        return ResponseEntity.ok(jogoRepository.findByPrecoMaior(x));
+    }
+    
 	//--------------------------MÉTODOS POST------------------------
 	@PostMapping
-	public ResponseEntity<Jogo> adicionar(@RequestBody Jogo jogo){
+	public ResponseEntity<Jogo> adicionar(@Valid @RequestBody Jogo jogo){
 		return ResponseEntity.status(HttpStatus.CREATED).body(jogoRepository.save(jogo));
 	}
 	//--------------------------MÉTODOS PUT--------------------------

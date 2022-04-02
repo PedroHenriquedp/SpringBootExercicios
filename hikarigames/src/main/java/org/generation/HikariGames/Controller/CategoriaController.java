@@ -2,6 +2,8 @@ package org.generation.HikariGames.Controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.generation.HikariGames.model.Categoria;
 import org.generation.HikariGames.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +60,7 @@ public class CategoriaController {
 	}
 	//--------------------------MÉTODOS POST------------------------
 	@PostMapping
-	public ResponseEntity<Categoria> adicionar(@RequestBody Categoria categoria){
+	public ResponseEntity<Categoria> adicionar(@Valid @RequestBody Categoria categoria){
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
 	}
 	//--------------------------MÉTODOS PUT--------------------------

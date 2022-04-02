@@ -17,6 +17,7 @@ public class Jogo {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String nome;
 	private Double preco;
 	@Size(min = 5, max = 12)
 	private String codigoBarra;
@@ -69,6 +70,12 @@ public class Jogo {
 	}
 	public void setFaixaEtaria(String faixaEtaria) {
 		this.faixaEtaria = faixaEtaria;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public Boolean getJogoDigital() {
 		return jogoDigital;
