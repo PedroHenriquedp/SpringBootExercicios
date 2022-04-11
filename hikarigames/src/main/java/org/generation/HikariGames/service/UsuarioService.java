@@ -40,8 +40,8 @@ public class UsuarioService {
 				usuarioLogin.get().setId(usuario.get().getId());
 				usuarioLogin.get().setNome(usuario.get().getNome());
 				usuarioLogin.get().setFoto(usuario.get().getFoto());
-				usuarioLogin.get().setToken(gerarBasicToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha()));
 				usuarioLogin.get().setSenha(usuario.get().getSenha());
+				usuarioLogin.get().setToken(gerarBasicToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha()));
 				
 				return usuarioLogin;
 			}
@@ -68,6 +68,7 @@ public class UsuarioService {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado!", null);		
 		}	
 		
+		//criptografarSenha = pode ser qualquer nome
 		private String criptografarSenha(String senha) {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			return encoder.encode(senha);
